@@ -6,6 +6,8 @@ import {
     varchar,
     check,
     primaryKey,
+    uuid,
+    serial,
 } from "drizzle-orm/pg-core";
 
 import { sql } from "drizzle-orm";
@@ -29,11 +31,13 @@ export const movies = pgTable(
 export const showtimes = pgTable(
     "showtimes",
     {
-        id: integer().primaryKey(),
-        movie_id: integer().references(() => movies.id, { onDelete: "cascade" }),
-        theater: varchar({ length: 70 }),
-        start_time: timestamp({ precision: 6, withTimezone: true }),
-        end_time: timestamp({ precision: 6, withTimezone: true }),
+        id: serial().primaryKey(),
+        movie_id: integer()
+            .notNull()
+            .references(() => movies.id, { onDelete: "cascade" }),
+        theater: varchar({ length: 70 }).notNull(),
+        start_time: timestamp({ precision: 6, withTimezone: true }).notNull(),
+        end_time: timestamp({ precision: 6, withTimezone: true }).notNull(),
         price: real().notNull(),
     },
     (table) => [
@@ -47,8 +51,15 @@ export const showtimes = pgTable(
 export const bookings = pgTable(
     "bookings",
     {
-        showtime_id: integer().references(() => showtimes.id, { onDelete: "cascade" }),
+        showtime_id: integer()
+            .notNull()
+            .references(() => showtimes.id, { onDelete: "cascade" }),
         seat_number: integer().notNull(),
+        user_id: uuid().notNull(),
     },
-    (table) => [primaryKey({ columns: [table.showtime_id, table.seat_number] })]
+    (table) => [
+        primaryKey({
+            columns: [table.showtime_id, table.seat_number],
+        }),
+    ]
 );
