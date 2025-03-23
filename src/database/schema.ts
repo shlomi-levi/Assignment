@@ -45,6 +45,7 @@ export const showtimes = pgTable(
             "end_time_greater_than_start",
             sql`${table.end_time} > ${table.start_time}`
         ),
+        // Ensure no overlapping showtimes for the same theater
     ]
 );
 

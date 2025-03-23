@@ -1,6 +1,7 @@
 CREATE TABLE "bookings" (
-	"showtime_id" integer,
+	"showtime_id" integer NOT NULL,
 	"seat_number" integer NOT NULL,
+	"user_id" uuid NOT NULL,
 	CONSTRAINT "bookings_showtime_id_seat_number_pk" PRIMARY KEY("showtime_id","seat_number")
 );
 --> statement-breakpoint
@@ -16,11 +17,11 @@ CREATE TABLE "movies" (
 );
 --> statement-breakpoint
 CREATE TABLE "showtimes" (
-	"id" integer PRIMARY KEY NOT NULL,
-	"movie_id" integer,
-	"theater" varchar(70),
-	"start_time" timestamp (6) with time zone,
-	"end_time" timestamp (6) with time zone,
+	"id" serial PRIMARY KEY NOT NULL,
+	"movie_id" integer NOT NULL,
+	"theater" varchar(70) NOT NULL,
+	"start_time" timestamp (6) with time zone NOT NULL,
+	"end_time" timestamp (6) with time zone NOT NULL,
 	"price" real NOT NULL,
 	CONSTRAINT "end_time_greater_than_start" CHECK ("showtimes"."end_time" > "showtimes"."start_time")
 );

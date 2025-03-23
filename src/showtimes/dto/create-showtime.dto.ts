@@ -11,8 +11,8 @@ export class CreateShowtimeDto {
     theater: string;
 
     @IsISO8601(undefined, { message: "startTime must be in ISO8601 format" })
-    startTime: Date;
+    startTime: string;
 
     @IsISO8601(undefined, { message: "endTime must be in ISO8601 format" })
-    endTime: Date;
+    endTime: string;
 }

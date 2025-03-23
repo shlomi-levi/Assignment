@@ -19,5 +19,8 @@ export class BookingsService {
             seat_number,
             user_id,
         });
+
+        if (!res.rowCount) {
+        }
     }
 }

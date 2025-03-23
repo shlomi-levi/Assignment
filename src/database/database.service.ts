@@ -13,6 +13,12 @@ export class DatabaseService implements OnModuleInit, OnModuleDestroy {
         try {
             await migrate(this.db, { migrationsFolder: "drizzle/" });
             await this.db.execute(`SELECT 1`);
+            // TODO: add this constraint
+            // await this.db.execute(`ALTER TABLE showtimes
+            //         ADD CONSTRAINT no_overlapping_showtimes
+            //         EXCLUDE USING gist (
+            //             theater WITH =,
+            //             tsrange(start_time, end_time, '[]') WITH &&`);
         } catch (error) {
             console.log("Databse connection failed", error);
             process.exit(1);

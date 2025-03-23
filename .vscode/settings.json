@@ -1,0 +1,11 @@
+{
+    "sqltools.connections": [
+        {
+            "previewLimit": 50,
+            "server": "localhost",
+            "driver": "PostgreSQL",
+            "connectString": "postgresql://popcorn-palace:popcorn-palace@localhost:5433/popcorn-palace",
+            "name": "Popcorn Palace"
+        }
+    ]
+}

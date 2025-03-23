@@ -1,5 +1,5 @@
 {
-  "id": "c80005d2-287a-490b-8545-30633e13f2aa",
+  "id": "66613502-2bcf-4867-9f5a-6901298cd976",
   "prevId": "00000000-0000-0000-0000-000000000000",
   "version": "7",
   "dialect": "postgresql",
@@ -12,11 +12,17 @@
           "name": "showtime_id",
           "type": "integer",
           "primaryKey": false,
-          "notNull": false
+          "notNull": true
         },
         "seat_number": {
           "name": "seat_number",
           "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "user_id": {
+          "name": "user_id",
+          "type": "uuid",
           "primaryKey": false,
           "notNull": true
         }
@@ -126,7 +132,7 @@
       "columns": {
         "id": {
           "name": "id",
-          "type": "integer",
+          "type": "serial",
           "primaryKey": true,
           "notNull": true
         },
@@ -134,25 +140,25 @@
           "name": "movie_id",
           "type": "integer",
           "primaryKey": false,
-          "notNull": false
+          "notNull": true
         },
         "theater": {
           "name": "theater",
           "type": "varchar(70)",
           "primaryKey": false,
-          "notNull": false
+          "notNull": true
         },
         "start_time": {
           "name": "start_time",
           "type": "timestamp (6) with time zone",
           "primaryKey": false,
-          "notNull": false
+          "notNull": true
         },
         "end_time": {
           "name": "end_time",
           "type": "timestamp (6) with time zone",
           "primaryKey": false,
-          "notNull": false
+          "notNull": true
         },
         "price": {
           "name": "price",
