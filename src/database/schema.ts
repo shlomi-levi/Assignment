@@ -5,7 +5,7 @@ import {
     timestamp,
     varchar,
     check,
-    primaryKey,
+    unique,
     uuid,
     serial,
 } from "drizzle-orm/pg-core";
@@ -45,22 +45,18 @@ export const showtimes = pgTable(
             "end_time_greater_than_start",
             sql`${table.end_time} > ${table.start_time}`
         ),
-        // Ensure no overlapping showtimes for the same theater
     ]
 );
 
 export const bookings = pgTable(
     "bookings",
     {
+        id: uuid().defaultRandom().primaryKey(),
         showtime_id: integer()
             .notNull()
             .references(() => showtimes.id, { onDelete: "cascade" }),
         seat_number: integer().notNull(),
         user_id: uuid().notNull(),
     },
-    (table) => [
-        primaryKey({
-            columns: [table.showtime_id, table.seat_number],
-        }),
-    ]
+    (table) => [unique().on(table.showtime_id, table.seat_number)]
 );

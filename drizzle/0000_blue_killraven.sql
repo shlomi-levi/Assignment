@@ -1,8 +1,9 @@
 CREATE TABLE "bookings" (
+	"id" uuid PRIMARY KEY DEFAULT gen_random_uuid() NOT NULL,
 	"showtime_id" integer NOT NULL,
 	"seat_number" integer NOT NULL,
 	"user_id" uuid NOT NULL,
-	CONSTRAINT "bookings_showtime_id_seat_number_pk" PRIMARY KEY("showtime_id","seat_number")
+	CONSTRAINT "bookings_showtime_id_seat_number_unique" UNIQUE("showtime_id","seat_number")
 );
 --> statement-breakpoint
 CREATE TABLE "movies" (

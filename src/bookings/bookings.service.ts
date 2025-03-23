@@ -14,13 +14,15 @@ export class BookingsService {
             createBookingDto.userId,
         ];
 
-        const res = await this.databaseService.db.insert(bookings).values({
-            showtime_id,
-            seat_number,
-            user_id,
-        });
+        const res = await this.databaseService.db
+            .insert(bookings)
+            .values({
+                showtime_id,
+                seat_number,
+                user_id,
+            })
+            .returning({ bookingId: bookings.id });
 
-        if (!res.rowCount) {
-        }
+        return res;
     }
 }

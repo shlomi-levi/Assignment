@@ -1,5 +1,5 @@
 {
-  "id": "66613502-2bcf-4867-9f5a-6901298cd976",
+  "id": "bf1cce8f-f7e8-49b7-b48b-39eeeb924c26",
   "prevId": "00000000-0000-0000-0000-000000000000",
   "version": "7",
   "dialect": "postgresql",
@@ -8,6 +8,13 @@
       "name": "bookings",
       "schema": "",
       "columns": {
+        "id": {
+          "name": "id",
+          "type": "uuid",
+          "primaryKey": true,
+          "notNull": true,
+          "default": "gen_random_uuid()"
+        },
         "showtime_id": {
           "name": "showtime_id",
           "type": "integer",
@@ -43,16 +50,17 @@
           "onUpdate": "no action"
         }
       },
-      "compositePrimaryKeys": {
-        "bookings_showtime_id_seat_number_pk": {
-          "name": "bookings_showtime_id_seat_number_pk",
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {
+        "bookings_showtime_id_seat_number_unique": {
+          "name": "bookings_showtime_id_seat_number_unique",
+          "nullsNotDistinct": false,
           "columns": [
             "showtime_id",
             "seat_number"
           ]
         }
       },
-      "uniqueConstraints": {},
       "policies": {},
       "checkConstraints": {},
       "isRLSEnabled": false
