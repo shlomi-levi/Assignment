@@ -26,6 +26,8 @@ Make sure to update the values of `POSTGRES_PASSWORD`, `POSTGRES_USER`, and `POS
 Make sure that docker is installed on your system,
 then open a command line in the project's root folder and run `docker-compose up`
 
+wait for both the database and the server to load up
+
 ### 3. Testing
 
 Due to the time constraint and lack of familiarity with the framework, I haven't implemented tests, but I have included a postman collection with all the endpoints, in the file `API.postman_collection.json`
