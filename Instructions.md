@@ -12,7 +12,7 @@ In the root folder of the project, create a `.env` file and add the following en
 
 ```env
 DATABASE_HOST=db
-POSTGRES_PORT=5433
+POSTGRES_PORT=5432
 POSTGRES_USER=postgres
 POSTGRES_PASSWORD=1234
 POSTGRES_DB=popcorn_palace
